@@ -3,29 +3,38 @@ name: Publish to NuGet
 on:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          dotnet-version: '8.0.x' 
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Debug directory structure
+        run: ls -laR $GITHUB_WORKSPACE
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./src/SmartRetry.csproj
 
       - name: Build project
-        run: dotnet build -c Release
+        run: dotnet build ./src/SmartRetry.csproj -c Release
 
       - name: Run tests
-        run: dotnet test -c Release --no-build
+        run: dotnet test ./src/SmartRetry.csproj -c Release --no-build
 
       - name: Pack project
-        run: dotnet pack -c Release --no-build
+        run: dotnet pack ./src/SmartRetry.csproj -c Release --no-build -o ./nupkg
 
       - name: Push to NuGet
-        if: github.ref == 'refs/heads/main'  
-        run: dotnet nuget push ${{ github.workspace }}/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        if: github.ref == 'refs/heads/main'
+        run: dotnet nuget push ./nupkg/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
