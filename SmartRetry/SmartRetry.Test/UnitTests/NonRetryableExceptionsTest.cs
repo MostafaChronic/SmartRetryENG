@@ -8,14 +8,12 @@ namespace SmartRetry.Test.UnitTests;
 
 public class NonRetryableExceptionsTest
 {
-
-    private readonly Mock<IRetryStrategy> _mockStrategy;
+     
     private readonly Mock<IBackoffStrategy> _mockBackoff;
     private readonly RetryOptions _options;
 
     public NonRetryableExceptionsTest()
-    {
-        _mockStrategy = new Mock<IRetryStrategy>();
+    { 
         _mockBackoff = new Mock<IBackoffStrategy>();
         _options = new RetryOptions
         {
@@ -32,7 +30,7 @@ public class NonRetryableExceptionsTest
         var action = new Func<Task>(() => throw new ArgumentException("Non-retryable exception"));
 
         // Act
-        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _mockBackoff.Object, _options);
+        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockBackoff.Object, _options);
 
         // Assert 
         await act.Should()
@@ -50,7 +48,7 @@ public class NonRetryableExceptionsTest
         var action = new Func<Task>(() => throw new HttpRequestException("Client error", null, HttpStatusCode.BadRequest));
 
         // Act
-        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _mockBackoff.Object, _options);
+        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockBackoff.Object, _options);
 
         // Assert 
         await act.Should()
@@ -67,7 +65,7 @@ public class NonRetryableExceptionsTest
         Func<Task> action = null;
 
         // Act
-        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _mockBackoff.Object, _options);
+        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockBackoff.Object, _options);
 
         // Assert
         await act.Should().ThrowAsync<ArgumentNullException>();

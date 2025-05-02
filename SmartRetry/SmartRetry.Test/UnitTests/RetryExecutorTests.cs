@@ -9,15 +9,13 @@ namespace SmartRetry.Test.UnitTests;
 
 public class RetryExecutorTests
 {
-
-    private readonly Mock<IRetryStrategy> _mockStrategy;
+     
     private readonly Mock<IBackoffStrategy> _mockBackoff;
     private readonly RetryOptions _options;
     private readonly ExponentialBackoffStrategy _backoffStrategy;
 
     public RetryExecutorTests()
-    {
-        _mockStrategy = new Mock<IRetryStrategy>();
+    { 
         _mockBackoff = new Mock<IBackoffStrategy>();
         _options = new RetryOptions
         {
@@ -41,11 +39,10 @@ public class RetryExecutorTests
         };
 
         // Act
-        await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _mockBackoff.Object, _options);
+        await RetryExecutor.ExecuteAsync(action, _mockBackoff.Object, _options);
 
         // Assert
-        wasCalled.Should().BeTrue();
-        _mockStrategy.Verify(m => m.ExecuteAsync(It.IsAny<Func<Task>>(), It.IsAny<RetryOptions>(), It.IsAny<CancellationToken>()), Times.Never);
+        wasCalled.Should().BeTrue(); 
     }
 
     [Fact]
@@ -62,7 +59,7 @@ public class RetryExecutorTests
         };
 
         // Act
-        await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _backoffStrategy, _options);
+        await RetryExecutor.ExecuteAsync(action, _backoffStrategy, _options);
 
         // Assert
         attempts.Should().Be(2); // 1 failure + 1 success
@@ -75,7 +72,7 @@ public class RetryExecutorTests
         var action = new Func<Task>(() => throw new HttpRequestException("Server error", null, HttpStatusCode.InternalServerError));
 
         // Act
-        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _backoffStrategy, _options);
+        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _backoffStrategy, _options);
 
         // Assert
         await act.Should()
@@ -98,7 +95,7 @@ public class RetryExecutorTests
         });
 
         // Act
-        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _backoffStrategy, _options, cts.Token);
+        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _backoffStrategy, _options, cts.Token);
 
         // Assert
         await act.Should().ThrowAsync<OperationCanceledException>();
@@ -122,7 +119,7 @@ public class RetryExecutorTests
         };
 
         // Act
-        await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _backoffStrategy, options);
+        await RetryExecutor.ExecuteAsync(action, _backoffStrategy, options);
 
         // Assert
         attempts.Should().Be(2); // 1 failure + 1 success

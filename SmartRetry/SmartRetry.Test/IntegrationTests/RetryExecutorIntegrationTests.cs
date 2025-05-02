@@ -13,14 +13,12 @@ using Xunit;
 namespace SmartRetry.Test.IntegrationTests;
 
 public class RetryExecutorIntegrationTests
-{
-    private readonly Mock<IRetryStrategy> _mockStrategy;
+{ 
     private readonly ExponentialBackoffStrategy _backoffStrategy;
     private readonly RetryOptions _options;
 
     public RetryExecutorIntegrationTests()
-    {
-        _mockStrategy = new Mock<IRetryStrategy>();
+    { 
         _backoffStrategy = new ExponentialBackoffStrategy();
         _options = new RetryOptions
         {
@@ -44,7 +42,7 @@ public class RetryExecutorIntegrationTests
         };
 
         // Act
-        await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _backoffStrategy, _options);
+        await RetryExecutor.ExecuteAsync(action, _backoffStrategy, _options);
 
         // Assert
         attempts.Should().Be(2); // 1 failure + 1 success
@@ -64,7 +62,7 @@ public class RetryExecutorIntegrationTests
         };
 
         // Act
-        await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _backoffStrategy, _options);
+        await RetryExecutor.ExecuteAsync(action, _backoffStrategy, _options);
 
         // Assert
         attempts.Should().Be(3); // 2 failures + 1 success
@@ -81,7 +79,7 @@ public class RetryExecutorIntegrationTests
         var action = new Func<Task>(() => throw new HttpRequestException("Server error", null, HttpStatusCode.InternalServerError));
 
         // Act
-        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _mockStrategy.Object, _backoffStrategy, options);
+        Func<Task> act = async () => await RetryExecutor.ExecuteAsync(action, _backoffStrategy, options);
 
         // Assert
         await act.Should()
