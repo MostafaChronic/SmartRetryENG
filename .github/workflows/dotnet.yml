@@ -1,0 +1,31 @@
+name: Publish to NuGet
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x' 
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build project
+        run: dotnet build -c Release
+
+      - name: Run tests
+        run: dotnet test -c Release --no-build
+
+      - name: Pack project
+        run: dotnet pack -c Release --no-build
+
+      - name: Push to NuGet
+        if: github.ref == 'refs/heads/main'  
+        run: dotnet nuget push ${{ github.workspace }}/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
