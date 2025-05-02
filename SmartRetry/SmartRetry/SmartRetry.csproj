@@ -16,10 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="C:\Users\Chronic\Downloads\SmartRetry.jpeg">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+	  <None Include="SmartRetry.jpeg" Pack="true" PackagePath="." /> 
   </ItemGroup>
 
   <ItemGroup>
