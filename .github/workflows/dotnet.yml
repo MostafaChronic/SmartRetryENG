@@ -24,16 +24,16 @@ jobs:
         run: ls -laR $GITHUB_WORKSPACE
 
       - name: Restore dependencies
-        run: dotnet restore ./src/SmartRetry.csproj
+        run: dotnet restore ./SmartRetry/SmartRetry/SmartRetry.csproj
 
       - name: Build project
-        run: dotnet build ./src/SmartRetry.csproj -c Release
+        run: dotnet build ./SmartRetry/SmartRetry/SmartRetry.csproj -c Release
 
       - name: Run tests
-        run: dotnet test ./src/SmartRetry.csproj -c Release --no-build
+        run: dotnet test ./SmartRetry/SmartRetry/SmartRetry.csproj -c Release --no-build
 
       - name: Pack project
-        run: dotnet pack ./src/SmartRetry.csproj -c Release --no-build -o ./nupkg
+        run: dotnet pack ./SmartRetry/SmartRetry/SmartRetry.csproj -c Release --no-build -o ./nupkg
 
       - name: Push to NuGet
         if: github.ref == 'refs/heads/main'
