@@ -1,11 +1,35 @@
-# 📦 SmartRetry
+
+[![NuGet](https://img.shields.io/nuget/v/SmartRetry.svg)](https://www.nuget.org/packages/SmartRetry/)
+[![Build Status](https://dev.azure.com/your-organization/your-project/_apis/build/status/your-build-definition-id)](https://dev.azure.com/your-organization/your-project/_build/latest?definitionId=your-build-definition-id)
+[![codecov](https://codecov.io/gh/your-username/SmartRetry/branch/main/graph/badge.svg?token=YOUR-CODECOV-TOKEN)](https://codecov.io/gh/your-username/SmartRetry)
+
+# SmartRetry 📦
+
+
+
+## Table of Contents
+
+- [Features](#-features)
+- [Installation](#-installation)
+- [Getting Started](#-getting-started)
+  - [Register in `Program.cs`](#-register-in-programcs)
+  - [Inject & Use the Retry Executor](#-inject--use-the-retry-executor)
+- [Custom Retry Options](#-custom-retry-options)
+- [Backoff & Jitter Strategy](#-backoff--jitter-strategy)
+- [Running Tests](#-running-tests)
+- [Generate Code Coverage Report](#-generate-code-coverage-report)
+- [SonarQube Integration](#-sonarqube-integration)
+- [Project Structure](#-project-structure)
+- [Contributing](#-contributing)
+- [License](#-license)
+
 
 **SmartRetry** is a lightweight, extensible retry mechanism for .NET, designed to handle transient faults with support for exponential backoff and jitter strategies.  
 Ideal for HTTP calls, database retries, and other retryable operations.
 
 ---
 
-## 🚀 Features
+## 🚀 Features 
 
 - ✅ Retry execution with custom logic
 - 🔁 Exponential backoff & jitter support
