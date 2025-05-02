@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35728.132 d17.12
+VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{5D01D8A6-4F21-450F-9AA5-F62E18C8A343}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRetry", "SmartRetry\SmartRetry.csproj", "{B7E463BD-7639-49AB-949C-53D2C2491FA6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRetry.Test", "SmartRetry.Test\SmartRetry.Test.csproj", "{9ECEFF3C-2ABA-4B6A-9DC8-2FA2E8E5A5E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartRetryConsoleSample", "SmartRetryConsoleSample\SmartRetryConsoleSample.csproj", "{3E2807A3-67FA-42B3-A083-CEC81AA9B2DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{9ECEFF3C-2ABA-4B6A-9DC8-2FA2E8E5A5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ECEFF3C-2ABA-4B6A-9DC8-2FA2E8E5A5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ECEFF3C-2ABA-4B6A-9DC8-2FA2E8E5A5E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E2807A3-67FA-42B3-A083-CEC81AA9B2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E2807A3-67FA-42B3-A083-CEC81AA9B2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E2807A3-67FA-42B3-A083-CEC81AA9B2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E2807A3-67FA-42B3-A083-CEC81AA9B2DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +38,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B7E463BD-7639-49AB-949C-53D2C2491FA6} = {5D01D8A6-4F21-450F-9AA5-F62E18C8A343}
 		{9ECEFF3C-2ABA-4B6A-9DC8-2FA2E8E5A5E3} = {EF265220-B2F8-4AE5-8D48-C768922BDD4F}
+		{3E2807A3-67FA-42B3-A083-CEC81AA9B2DE} = {5D01D8A6-4F21-450F-9AA5-F62E18C8A343}
 	EndGlobalSection
 EndGlobal
