@@ -5,8 +5,7 @@ namespace SmartRetry;
 public sealed class RetryExecutor
 {
     public static async Task ExecuteAsync(
-        Func<Task> action,
-        IRetryStrategy retryStrategy,
+        Func<Task> action, 
         IBackoffStrategy backoffStrategy,
         RetryOptions options,
         CancellationToken cancellationToken = default)
