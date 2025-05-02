@@ -1,30 +1,47 @@
 
-# SmartRetry: Easy Retry Logic for .NET
+# SmartRetry: Robust Retry Logic for .NET Applications
 
 ## Table of Contents
 
-- [Features](#-features)
-- [Installation](#-installation)
-- [Getting Started](#-getting-started)
-  - [Register in `Program.cs`](#1-register-in-programcs)
-  - [Inject & Use the Retry Executor](#2-inject--use-the-retry-executor)
-- [Custom Retry Options](#-custom-retry-options)
-- [Backoff & Jitter Strategy](#-backoff--jitter-strategy)
+-   [Introduction](#introduction)
+-   [Key Features](#key-features)
+-   [Installation](#installation)
+-   [Registering SmartRetry](#registering-smartretry)
+-   [Using SmartRetry](#using-smartretry)
+    -   [Basic Usage](#basic-usage)
+    -   [Understanding `RetryFailedException`](#understanding-retryfailedexception)
+-   [Customizing Retry Behavior](#customizing-retry-behavior)
+    -   [Understanding `RetryOptions`](#understanding-retryoptions)
+    -   [Example: Custom Retry Logic](#example-custom-retry-logic)
+-   [Backoff and Jitter Strategies](#backoff-and-jitter-strategies)
+    -   [Exponential Backoff](#exponential-backoff)
+    -   [Jitter](#jitter)
+    -   [Creating Custom Strategies](#creating-custom-strategies)
+- [Non-Retryable Exceptions](#non-retryable-exceptions)
+-   [Contact](#contact)
 
 
-**SmartRetry** is a lightweight and extensible .NET library designed to simplify the implementation of retry logic with built-in support for exponential backoff and jitter strategies.
-Ideal for HTTP calls, database retries, and other retryable operations.
+## Introduction
+
+SmartRetry is a lightweight and powerful .NET library that simplifies the implementation of robust retry logic in your applications. It is designed to handle transient faults, which are temporary issues that might occur in network requests, database operations, or interactions with other external resources. By automatically retrying failed operations, SmartRetry helps improve the resilience and reliability of your .NET applications.
+
+## Key Features
+
+-   **Automatic Retries:** Automatically retries operations that fail due to transient faults.
+-   **Exponential Backoff:** Gradually increases the delay between retry attempts. This is useful to prevent overwhelming a service that is temporarily overloaded.
+-   **Jitter:** Adds randomness to the delay between retries, which helps distribute retries evenly and avoid thundering herd problems.
+-   **Customizable Retry Logic:** Allows you to customize the retry behavior using `RetryOptions`, such as the maximum number of retries, the base delay, and the conditions under which retries should be performed.
+-   **Dependency Injection (DI) Friendly:** Designed to integrate seamlessly with the .NET dependency injection system.
+-   **Non Retryable Exceptions**: This feature allows you to define exceptions that should not be retried.
+-   **`RetryFailedException`:**  Provides detailed information about why an operation failed after multiple retry attempts.
 
 ---
 
-## 🚀 Features
+## Installation
 
-- ✅ Retry execution with custom logic
-- 🔁 Exponential backoff & jitter support
-- ⚙️ Configurable via `RetryOptions`
-- 💉 Clean Dependency Injection (DI) integration
-- 🧪 Unit & integration tested
-- 🛡️ Follows SOLID design principles
+Install the SmartRetry package via NuGet:
+
+
 
 ---
 
